@@ -1,0 +1,20 @@
+html, body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 auto;
+  text-align: center;
+  background: #111111;
+}
+
+h1 {
+  font-family: sans-serif;
+  font-size: 2em;
+  color: #eeeeee;
+  margin: 50px 0;
+}
+
+#viewDiv {
+  height: 500px;
+  width: 800px;
+}
