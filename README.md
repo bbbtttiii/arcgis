@@ -1,5 +1,7 @@
 ## CSV Layer example combining the ArcGIS JavaScript API with tabular data from NOAA.
 
+Renders tornado reports from March 17, 2021.
+
 ![map detail 1](images/tornado_map.jpg "Map")
 
 ![map detail 2](images/tornado_map_detail.jpg "Map detail")
