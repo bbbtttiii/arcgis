@@ -8,13 +8,13 @@ html, body {
 }
 
 h1 {
-  font-family: sans-serif;
+  font-family: 'Arial', sans-serif;
   font-size: 2em;
   color: #eeeeee;
   margin: 50px 0;
 }
 
 #viewDiv {
-  height: 500px;
-  width: 800px;
+  height: 700px;
+  width: 1000px;
 }

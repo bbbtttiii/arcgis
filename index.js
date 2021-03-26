@@ -16,19 +16,18 @@ require([
 
   const template = {
     title: "Tornado Report",
-    content: `REPORTED AT {Time}<br><br> {Location}, {State}.<br><br> {Comments}.`
+    content: `REPORTED AT {Time}<br><br>
+             {Location}, {State}.<br><br>
+             {Comments}.`
   };
 
   const csvLayer = new CSVLayer({
-    title: "March 17 Tornado Reports",
+    title: "March 17, 2021 Tornado Reports",
     url: "210317_rpts.csv",
     copyright: "NOAA",
     renderer: {
       type: "unique-value",
       field: "Category",
-    },
-    elevationInfo: {
-      mode: "on-the-ground"
     },
     popupTemplate: template
   });
@@ -37,8 +36,8 @@ require([
     type: "simple",
     symbol: {
       type: "simple-marker", 
-      size: 5,
-      color: [255, 25, 0],
+      size: 8,
+      color: [255, 0, 0, 0.75],
       outline: {
         color: "black",
       }
@@ -56,7 +55,5 @@ require([
     zoom: 5,
     container: "viewDiv"
   });
-
-  map.add(csvLayer);
 
 });
