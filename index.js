@@ -1,18 +1,22 @@
-let map, csv;
-
 require([
   "esri/config",
   "esri/Map",
-  "esri/views/MapView",
+  "esri/renderers/SimpleRenderer",
+  "esri/symbols/PointSymbol3D",
+  "esri/symbols/IconSymbol3DLayer",
+  "esri/views/SceneView",
   "esri/layers/CSVLayer",
-], function(
+], function (
   esriConfig,
   Map,
-  MapView,
+  SimpleRenderer,
+  PointSymbol3D,
+  IconSymbol3DLayer,
+  SceneView,
   CSVLayer,
-  ) {
+) {
 
-  esriConfig.apiKey = "AAPK15a27c2b83084c26983c5098b26de34aUtUT1GR3M7DDihlIdLwbAzWzrRslmB-NuSoO4cPc5PUWuVS6DUeyeapxVjpkj2Bh";
+  esriConfig.apiKey = config.API_KEY;
 
   const csvLayer = new CSVLayer({
     title: "March 17 Tornado Reports",
@@ -21,39 +25,42 @@ require([
     renderer: {
       type: "unique-value",
       field: "Category",
-      // uniqueValueInfos: createUniqueValueInfos()
+    },
+    elevationInfo: {
+      mode: "on-the-ground"
     }
   });
 
-  
+  csvLayer.renderer = new SimpleRenderer({
+    type: "simple",
+    symbol: new PointSymbol3D({
+      symbolLayers: [
+        new IconSymbol3DLayer({
+          material: {
+            color: [255, 55, 0]
+          },
+          outline: {
+            width: 0.5,
+            color: "black"
+          },
+          size: "8px"
+        })
+      ]
+    })
+  });
+
   const map = new Map({
     basemap: "dark-gray-vector",
     layers: [csvLayer]
   });
 
-  
-  const view = new MapView({
+  const view = new SceneView({
     map,
-    center: [-96, 38],
-    zoom: 3,
+    center: [-89, 33],
+    zoom: 5,
     container: "viewDiv"
   });
-  
+
   map.add(csvLayer);
 
-  // function createUniqueValueInfos() {
-  //   const img = ['marker.png']
-  //   return img.map(function (url, i) {
-  //     return {
-  //       value: i,
-  //       symbol: {
-  //         type: "picture-marker",
-  //         url
-  //       }
-  //     }
-  //   })
-  // }
-
 });
-
-// 
