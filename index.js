@@ -2,17 +2,13 @@ require([
   "esri/config",
   "esri/Map",
   "esri/renderers/SimpleRenderer",
-  "esri/symbols/PointSymbol3D",
-  "esri/symbols/IconSymbol3DLayer",
-  "esri/views/SceneView",
+  "esri/views/MapView",
   "esri/layers/CSVLayer",
 ], function (
   esriConfig,
   Map,
   SimpleRenderer,
-  PointSymbol3D,
-  IconSymbol3DLayer,
-  SceneView,
+  MapView,
   CSVLayer,
 ) {
 
@@ -28,25 +24,20 @@ require([
     },
     elevationInfo: {
       mode: "on-the-ground"
-    }
+    },
+    // popupTemplate: template
   });
 
   csvLayer.renderer = new SimpleRenderer({
     type: "simple",
-    symbol: new PointSymbol3D({
-      symbolLayers: [
-        new IconSymbol3DLayer({
-          material: {
-            color: [255, 55, 0]
-          },
-          outline: {
-            width: 0.5,
-            color: "black"
-          },
-          size: "8px"
-        })
-      ]
-    })
+    symbol: {
+      type: "simple-marker", 
+      size: 5,
+      color: [255, 25, 0],
+      outline: {
+        color: "black",
+      }
+    }
   });
 
   const map = new Map({
@@ -54,7 +45,7 @@ require([
     layers: [csvLayer]
   });
 
-  const view = new SceneView({
+  const view = new MapView({
     map,
     center: [-89, 33],
     zoom: 5,
