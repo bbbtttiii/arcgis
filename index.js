@@ -14,6 +14,11 @@ require([
 
   esriConfig.apiKey = config.API_KEY;
 
+  const template = {
+    title: "Tornado Report",
+    content: `REPORTED AT {Time}<br><br> {Location}, {State}.<br><br> {Comments}.`
+  };
+
   const csvLayer = new CSVLayer({
     title: "March 17 Tornado Reports",
     url: "210317_rpts.csv",
@@ -25,7 +30,7 @@ require([
     elevationInfo: {
       mode: "on-the-ground"
     },
-    // popupTemplate: template
+    popupTemplate: template
   });
 
   csvLayer.renderer = new SimpleRenderer({
